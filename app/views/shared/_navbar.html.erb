@@ -1,7 +1,7 @@
 <div class="navbar-wagon">
   <!-- Logo -->
   <%= link_to root_path, class: "navbar-wagon-brand" do %>
-    <%= image_tag "logo.png" %>
+    <%= image_tag "logo1.png" %>
   <% end %>
 
   <!-- Right Navigation -->
@@ -10,9 +10,9 @@
     <% if user_signed_in? %>
 
       <!-- Links when logged in -->
-      <%= link_to "Host", "#", class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Trips", "#", class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Messages", "#", class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Mes Articles", "#", class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Mes Achats", "#", class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Mes Ventes", "#", class: "navbar-wagon-item navbar-wagon-link" %>
 
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
@@ -20,8 +20,8 @@
           <%= image_tag "http://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li>
-              <%= link_to "#" do %>
-                <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
+              <%= link_to  edit_user_registration_path  do %>
+                <i class="fa fa-user"></i> <%= t(".profile", default: "Profil") %>
               <% end %>
             </li>
             <li>
