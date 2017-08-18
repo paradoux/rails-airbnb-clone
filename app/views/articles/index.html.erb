@@ -1,0 +1,18 @@
+
+<h1>Les produits de la semaine</h1>
+
+<% @articles.each do |article| %>
+
+<%= article.name %>
+
+<% end %>
+
+
+<br>
+<%= link_to 'Create account', new_user_registration_path %> |
+<%= link_to 'Sign_up', new_user_session_path %> |
+ <%= link_to destroy_user_session_path, method: :delete do %>
+ <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+ <% end %> |
+<%= link_to 'Edit account', edit_user_registration_path %>
+
