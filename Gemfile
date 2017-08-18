@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.3.4'
 
+
 gem 'devise'
 
 gem 'figaro'
@@ -9,6 +10,7 @@ gem 'pg'
 gem 'puma'
 gem 'rails', '5.0.5'
 gem 'redis'
+gem 'faker'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
