@@ -9,11 +9,20 @@
     <%= stylesheet_link_tag 'application', media: 'all' %>
   </head>
   <body>
+  <!-- CGN_ NAVBAR -->
+  <%= render 'shared/navbar' %>
+  <!-- CGN_ FLASHES -->
+  <%= render 'shared/flashes' %>
+
     <%= yield %>
     <%= javascript_include_tag 'application' %>
     <!-- CGN => pre requisite to Devise => Ensure you have flash messages  -->
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <!-- CGN: end of Devise pre requisite -->
+
+
+    <footer><%= render 'shared/footer' %></footer>
+
   </body>
 </html>
