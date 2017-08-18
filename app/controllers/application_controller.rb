@@ -1,6 +1,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+  # CGN_ à activer pour accéder au site seulement si logged in
+  before_action :authenticate_user!
+
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
