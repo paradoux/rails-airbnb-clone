@@ -25,9 +25,7 @@ Rails.application.configure do
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
-
-  # BG test pour faire marcher heroku
-  #config.assets.initialize_on_precompile = false
+  config.assets.initialize_on_precompile = false
 
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
