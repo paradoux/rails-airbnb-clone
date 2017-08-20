@@ -25,21 +25,21 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'cloudinary'
 # Attachinary
-#gem 'attachinary', github: 'assembler/attachinary'
+gem 'attachinary', github: 'assembler/attachinary'
 gem 'jquery-fileupload-rails'
 # gem 'coffee-rails' (deja présente)
 
 # Facebook connect
-#gem 'omniauth-facebook'
+gem 'omniauth-facebook'
 
 # Bootstrap date picker
-#gem 'bootstrap-datepicker-rails', '~> 1.6', '>= 1.6.4.1'
+gem 'bootstrap-datepicker-rails', '~> 1.6', '>= 1.6.4.1'
 
 # annotate
-#gem 'annotate', '~> 2.7', '>= 2.7.1'
+gem 'annotate', '~> 2.7', '>= 2.7.1'
 
 # google maps
-#gem 'gmaps4rails'
+gem 'gmaps4rails'
 
 
 group :development, :test do
