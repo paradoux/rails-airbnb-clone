@@ -14,7 +14,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-    @article.active = :inactif
+    @article.active = :actif
     @article.user = current_user
     if @article.save
       redirect_to articles_path, notice: "L'article a été créé avec beaucoup de succès"

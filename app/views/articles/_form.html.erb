@@ -1,12 +1,21 @@
 
 <%= simple_form_for @article do |f| %>
 <%= f.error_notification %>
-    <%= f.input :name, placeholder: "nom" %>
-    <%= f.input :description %>
-    <%= f.input :quantity %>
-    <%= f.input :unit, collection: Article.units %>
-    <%= f.input :image %>
-    <%= f.input :price %>
-    <%= f.input :delivery_date %>
-    <%= f.submit "Valider", class: "btn" %>
-    <% end %>
+<%= f.input :name, placeholder: "nom", label: false %>
+<%= f.input :description, placeholder: "description", label: false%>
+<div class="form-group">
+  <div class="col-xs-4">
+    <%= f.input :quantity, placeholder: "quantity", label:false  %>
+  </div>
+  <div class="col-xs-4">
+    <%= f.input :unit, placeholder: "unit", collection: Article.units, label:false %>
+  </div>
+  <div class="col-xs-4">
+    <%= f.input :price, placeholder: "prix", label:false %>
+  </div>
+</div>
+<%= f.input :image, placeholder: "chemin image", label:false %>
+
+<%= f.input :delivery_date, label: "DLC" %>
+<%= f.submit "Valider", class: "btn" %>
+<% end %>
