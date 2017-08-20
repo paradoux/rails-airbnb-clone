@@ -1,18 +1,53 @@
 
-<h1>Les produits de la semaine</h1>
+<div class="container">
+<h1 class="text-center">L'Épicerie</h1>
+<br>
+<br>
 
-<% @articles.each do |article| %>
 
-<%= article.name %>
 
-<% end %>
+<div class="container">
+  <div class="col-md-4 col-lg-4 col-xs-12">
+    <%= render 'form', article: @article %>
+  </div>
+
+  <div class="col-md-8 col-lg-8 col-xs-12">
+    <ul>
+      <% @articles.each do |article| %>
+      <li>
+        <b> #<%= article.active %># <%= article.name %></b> : <%= article.description %>
+        <br>
+        <%= article.quantity %>
+        <%= article.unit %>
+        <br>
+        prix : <i><b><%= article.price %>€</b></i>
+        <br>
+        vendeur : <%= article.user.first_name + " " + article.user.last_name %>
+        <br>
+        <%= link_to "delete", article_path(article), method: :delete, class: "btn btn-primary" %>
+        <%= link_to "mettre à jour", articles_path(article), class: "btn btn-primary" %>
+
+        <br>
+        -------------------
+      </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
 
 
 <br>
 <%= link_to 'Create account', new_user_registration_path %> |
 <%= link_to 'Sign_up', new_user_session_path %> |
- <%= link_to destroy_user_session_path, method: :delete do %>
- <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
- <% end %> |
+<%= link_to destroy_user_session_path, method: :delete do %>
+<i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+<% end %> |
 <%= link_to 'Edit account', edit_user_registration_path %>
 
+
+
+<br>
+<br>
+<br>
+<br>
+</div>

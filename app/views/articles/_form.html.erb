@@ -1,0 +1,12 @@
+
+<%= simple_form_for @article do |f| %>
+<%= f.error_notification %>
+    <%= f.input :name, placeholder: "nom" %>
+    <%= f.input :description %>
+    <%= f.input :quantity %>
+    <%= f.input :unit, collection: Article.units %>
+    <%= f.input :image %>
+    <%= f.input :price %>
+    <%= f.input :delivery_date %>
+    <%= f.submit "Valider", class: "btn" %>
+    <% end %>
