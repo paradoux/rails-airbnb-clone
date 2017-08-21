@@ -1,0 +1,30 @@
+<%= link_to "back", articles_path, class: "btn btn-primary" %>
+
+<div class="container">
+<% @orders.each do |order| %>
+  <div class="col-xs-10">
+    <b> <i> <%= order.status %> <%= order.user.first_name %></i>
+    <br>
+    <%= order.id %><%= order.article.name %> </b>
+    <br>
+    <%= order.article.quantity %>
+    <%= order.article.unit %>
+    <br>
+    prix : <i><b><%= order.article.price %>€</b></i>
+    <br>
+    vendeur : <%= order.article.user.first_name + " " + order.article.user.last_name %>
+    <br>
+    ---------------------
+  </div>
+  <div class="col-xs-2">
+
+    <%= link_to "supprimer", destroy_order_path(order), method: :delete, class: "btn btn-primary" %>
+  </div>
+<% end %>
+</div>
+
+
+
+
+
+
