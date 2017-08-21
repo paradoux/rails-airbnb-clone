@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
 
-def myachatsindex
+def indexachats
   # user_id de orders = acheteur
   @orders = [] # init
   @all_orders = Order.all
