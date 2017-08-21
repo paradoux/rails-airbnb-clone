@@ -10,12 +10,13 @@ Rails.application.routes.draw do
   resources :articles, only: [:index, :create, :new, :destroy, :update]
 
   get '/achats', to: "orders#my_achats_index"
-  get '/achats/order_id', to: "orders#show_achat"
+  get '/achats/order_id', to: "orders#myorder", as: 'myorders'
   get 'achats/article_id', to: "orders#new_achat"
+  post 'achats/', to: "orders#create", as: "new_order"
   get '/achats/order_id/edit', to: "orders#edit_achat"
-  get 'achats/order_id//delete', to: "orders#destroy_achat"
+  delete 'achats/order_id//delete', to: "orders#destroy", as: 'destroy_order'
 
 
-  get '/test', to: "orders#test"
+  get '/test', to: "orders#myachatsindex"
 
 end

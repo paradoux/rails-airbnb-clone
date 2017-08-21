@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
 
-def my_achats_index
+def myachatsindex
+  # user_id de orders = acheteur
   @orders = [] # init
   @all_orders = Order.all
   @all_orders.each do |order|
@@ -11,7 +12,7 @@ def my_achats_index
     return @orders
 end
 
-def test
+def myorder
 end
 
 def show_achat
