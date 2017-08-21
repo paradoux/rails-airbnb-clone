@@ -14,7 +14,7 @@
     <%= f.input :price, placeholder: "prix", label:false %>
   </div>
 </div>
-<%= f.input :image, placeholder: "chemin image", label:false %>
+<%= f.input :photo, as: :attachinary, placeholder: "chemin image", label:false %>
 
 <%= f.input :delivery_date, label: "DLC" %>
 <%= f.submit "Valider", class: "btn" %>
