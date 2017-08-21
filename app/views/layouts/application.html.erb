@@ -18,6 +18,7 @@
 
     <%= javascript_include_tag 'application' %>
 
+
     <!-- CGN => pre requisite to Devise => Ensure you have flash messages  -->
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
@@ -26,6 +27,7 @@
 
     <footer><%= render 'shared/footer' %></footer>
 
+    <%= cloudinary_js_config %>
 
   </body>
 </html>
