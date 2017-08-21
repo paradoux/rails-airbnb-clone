@@ -9,4 +9,5 @@ Rails.application.routes.draw do
 
   resources :articles, only: [:index, :create, :new, :destroy, :update]
 
+
 end
