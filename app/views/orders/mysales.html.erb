@@ -1,0 +1,31 @@
+<%= link_to "back", articles_path, class: "btn btn-primary" %>
+
+<h1>Mes ventes en cours</h1>
+
+<div class="container">
+  <div class="col-md-4 col-lg-4 col-xs-12">
+    <%= render 'form', article: @article %>
+  </div>
+
+
+  <div class="col-md-8 col-lg-8 col-xs-12">
+  <% @orders.each do |order| %>
+  <div class="col-xs-10">
+    <b> <%= order.article.name %> de <%= order.user.first_name %> </b><i> (<%= order.status %>)</i>
+    <br
+    <%= order.article.quantity %>
+    <%= order.article.unit %>
+    <br>
+    prix : <i><b><%= order.article.price %>€</b></i>
+    <br>
+    vendeur : <%= order.article.user.first_name + " " + order.article.user.last_name %>
+    <br>
+    ---------------------
+  </div>
+  <div class="col-xs-2">
+
+    <%= link_to "supprimer", destroy_order_path(order), method: :delete, class: "btn btn-primary" %>
+  </div>
+  <% end %>
+</div>
+</div>
