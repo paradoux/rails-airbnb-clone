@@ -28,23 +28,35 @@ class OrdersController < ApplicationController
 
 
   def mysales
-  # todo
-  @orders = Order.all
-# articles qui correspondent au user
-@articles = Article.where(user_id: current_user)
-# array avec les articles id du user
-@orders.each do |order|
-  @articles.each do |a|
-    if order.article.id == a
-      @orders_in_sale << order
-    end
-  end
-end
+# param du form
     if params[:format].nil?
       @article = Article.new
     else
       @article = Article.find(params[:format])
     end
+
+    # articles en cours de vente pour le user
+      @articles = Article.where(user_id: current_user)
+      @array_articles = []
+      # contruire array qui contient tous les articles du user
+      @articles.each do |article|
+        @array_articles << article.id
+      end
+    @orders = Order.all
+    @orders_in_sale = []
+    @orders_livre =[]
+    # garder les orders dont les articles <=> articles du user
+    @orders.each do |order|
+    @array_articles.each do |a|
+      if order.article_id == a
+        if order.status == "a_preparer"
+          @orders_in_sale << order
+        elsif order.status == "livre"
+          @orders_livre << order
+        end
+      end
+    end
+  end
 end
 
 
