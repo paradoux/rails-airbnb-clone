@@ -13,4 +13,8 @@ Rails.application.routes.draw do
   post 'orders/:id', to: 'orders#create', as: 'new_order'
   delete 'orders/:id', to: 'orders#destroy', as: 'destroy_order'
 
+  get '/test', to: "orders#test"
+
+  get 'orders/mysales', to: 'orders#mysales', as: 'mysales'
+
 end
