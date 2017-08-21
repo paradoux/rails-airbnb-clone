@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
 
     # For additional in app/views/devise/registrations/edit.html.erb
     # CGN : permettre la modif de nom + prenom + address + bio
-    devise_parameter_sanitizer.permit(:account_update, keys: [:username, :address, :bio])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:username, :address, :bio, :profile_picture])
   end
 
 end
