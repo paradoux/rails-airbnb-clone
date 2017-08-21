@@ -3,9 +3,7 @@
 <div class="container">
 <% @orders.each do |order| %>
   <div class="col-xs-10">
-    <b> <i> <%= order.status %> <%= order.user.first_name %></i>
-    <br>
-    <%= order.id %><%= order.article.name %> </b>
+    <b> <%= order.article.name %> de <%= order.user.first_name %> </b><i> (<%= order.status %>)</i>
     <br>
     <%= order.article.quantity %>
     <%= order.article.unit %>
