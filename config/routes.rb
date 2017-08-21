@@ -7,4 +7,6 @@ Rails.application.routes.draw do
 
   get'pages/concept'
 
+  resources :articles, only: [:index, :create, :new, :destroy, :update]
+
 end
