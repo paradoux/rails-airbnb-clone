@@ -15,14 +15,9 @@
   <%= render 'shared/flashes' %>
 
     <%= yield %>
-    <%= javascript_include_tag 'application' %>
-    <!-- CGN => pre requisite to Devise => Ensure you have flash messages  -->
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <!-- CGN: end of Devise pre requisite -->
-
 
     <footer><%= render 'shared/footer' %></footer>
+    <%= javascript_include_tag 'application' %>
 
   </body>
 </html>
