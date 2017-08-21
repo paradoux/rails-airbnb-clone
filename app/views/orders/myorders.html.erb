@@ -29,7 +29,7 @@
 
 
 <h1>Mes achats à récupérer</h1>
-<div class="container achats-en-cours">
+<div class="container achats-a-recuperer">
   <% @orders_a_recup.each do |order| %>
   <div class="col-xs-10">
     <b> <%= order.article.name %> de <%= order.user.first_name %> </b><i> (<%= order.status %>)</i>
