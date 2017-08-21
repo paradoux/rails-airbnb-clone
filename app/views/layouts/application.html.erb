@@ -16,6 +16,7 @@
 
     <%= yield %>
     <%= javascript_include_tag 'application' %>
+    <%= cloudinary_js_config %>
     <!-- CGN => pre requisite to Devise => Ensure you have flash messages  -->
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
