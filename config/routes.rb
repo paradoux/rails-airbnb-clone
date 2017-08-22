@@ -18,4 +18,7 @@ Rails.application.routes.draw do
   get 'orders/mysales', to: 'orders#mysales', as: 'mysales'
 
   get '/articles/search', to: 'articles#search'
+
+  get 'orders/:id/confirme', to: 'orders#acheteur_confirme', as: 'confirme'
+
 end

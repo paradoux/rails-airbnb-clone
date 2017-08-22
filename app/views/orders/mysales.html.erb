@@ -30,7 +30,7 @@
 <div class="container">
   <h1>Mes commandes à préparer</h1>
   <div class="col-md-8 col-lg-8 col-xs-12">
-    <% @orders_in_sale.each do |order| %>
+    <% @orders_a_preparer.each do |order| %>
       <div class="col-xs-10">
       <b> <%= order.article.name %>  </b><i> (<%= order.status %>)</i>
       <br>
@@ -54,6 +54,30 @@
   <h1>Mes commandes livrées</h1>
   <div class="col-md-8 col-lg-8 col-xs-12">
     <% @orders_livre.each do |order| %>
+    <div class="col-xs-10">
+      <b> <%= order.article.name %>  </b><i> (<%= order.status %>)</i>
+      <br>
+      <%= order.article.quantity %>
+      <%= order.article.unit %>
+      <br>
+      prix : <i><b><%= order.article.price %>€</b></i>
+      <br>
+      vendeur : <%= order.article.user.first_name + " " + order.article.user.last_name %>
+      <br>
+      ---------------------
+    </div>
+    <div class="col-xs-2">
+      <!-- btn à mettre -->
+    </div>
+    <% end %>
+  </div>
+
+</div>
+
+<div class="container">
+  <h1>Historique</h1>
+  <div class="col-md-8 col-lg-8 col-xs-12">
+    <% @orders_termine.each do |order| %>
     <div class="col-xs-10">
       <b> <%= order.article.name %>  </b><i> (<%= order.status %>)</i>
       <br>
