@@ -17,4 +17,5 @@ Rails.application.routes.draw do
 
   get 'orders/mysales', to: 'orders#mysales', as: 'mysales'
 
+  get '/articles/search', to: 'articles#search'
 end
