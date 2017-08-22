@@ -7,9 +7,12 @@
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
 
+  <%= link_to "L'Epcicerie", root_path ,class: "navbar-wagon-item navbar-wagon-link" %>
+
     <% if user_signed_in? %>
 
       <!-- Links when logged in -->
+
       <%= link_to "Mes Ventes", mysales_path ,class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "Mes Achats", myorders_path, class: "navbar-wagon-item navbar-wagon-link" %>
 
