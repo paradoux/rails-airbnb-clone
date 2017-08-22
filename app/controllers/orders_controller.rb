@@ -71,7 +71,8 @@ class OrdersController < ApplicationController
 end
 
 def acheteur_confirme
-  @order.a_preparer!
+  @type
+  @order.type!
   redirect_to  myorders_path, notice: "La commande est confirmée! Le vendeur la prépare..."
 end
 

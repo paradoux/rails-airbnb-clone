@@ -24,7 +24,7 @@
   <div class="col-xs-2">
 
     <%= link_to "supprimer", destroy_order_path(order), method: :delete, class: "btn btn-primary" %>
-    <%= link_to "confirmer", confirme_path(order), class: "btn btn-primary" %>
+    <%= link_to "confirmer", confirme_path(order, type: :a_preparer), class: "btn btn-primary" %>
   </div>
   <% end %>
 </div>
