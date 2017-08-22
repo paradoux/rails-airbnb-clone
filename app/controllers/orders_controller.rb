@@ -49,9 +49,9 @@ class OrdersController < ApplicationController
     @orders.each do |order|
     @array_articles.each do |a|
       if order.article_id == a
-        if order.status == "a_preparer"
+        if order.a_preparer?
           @orders_in_sale << order
-        elsif order.status == "livre"
+        elsif order.livre?
           @orders_livre << order
         end
       end
