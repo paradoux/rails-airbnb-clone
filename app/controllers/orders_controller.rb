@@ -21,7 +21,7 @@ class OrdersController < ApplicationController
       comment: "new order"
       )
     if @order.save
-      OrderMailer.prepare(@order).deliver_now
+
       redirect_to myorders_path, notice: "Une commande a été créée"
     else
       render 'articles/index'
@@ -72,6 +72,7 @@ end
 
 def acheteur_confirme
   @order.a_preparer!
+  OrderMailer.prepare(@order).deliver_now
   redirect_to  myorders_path, notice: "La commande est confirmée! Le vendeur la prépare..."
 end
 
