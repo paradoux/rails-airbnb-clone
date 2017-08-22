@@ -59,6 +59,11 @@ class OrdersController < ApplicationController
   end
 end
 
+def acheteur_confirme
+  @order = Order.find(params[:id])
+  @order.confirme!
+  redirect_to  myorders_path, notice: "La commande est confirmée! Le vendeur la prépare..."
+end
 
 end
 
