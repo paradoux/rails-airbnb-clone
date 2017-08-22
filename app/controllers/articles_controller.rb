@@ -12,7 +12,7 @@ class ArticlesController < ApplicationController
 
     flash[:notice] = "Veuillez vous connecter pour commander" if current_user.nil?
 
-    @articles = Article.order(active: :desc, id: :desc)
+    @articles = Article.actif.order(id: :desc)
 
     if params[:format].nil?
       @article = Article.new
