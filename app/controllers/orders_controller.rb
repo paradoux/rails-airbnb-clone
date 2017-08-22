@@ -1,9 +1,14 @@
 class OrdersController < ApplicationController
 
   def myorders
-    @orders = Order.where(user_id: current_user)
-    @orders_a_recup = Order.where(user_id: current_user, status: "en_cours")
-    @orders_historique = Order.where(user_id: current_user, status: "livre")
+    # achats en cours (statut = en_cours)
+    @orders = Order.where(user_id: current_user, status: :en_cours)
+    # achats en cours de prepa
+    @orders_prepa = Order.where(user_id: current_user, status: :a_preparer)
+    # achats à récupérer (a_preparer + confirme)
+    @orders_a_recup = Order.where(user_id: current_user, status: :confirme)
+    # achats termines
+    @orders_historique = Order.where(user_id: current_user, status: :livre)
   end
 
   def create
@@ -43,16 +48,19 @@ class OrdersController < ApplicationController
         @array_articles << article.id
       end
     @orders = Order.all
-    @orders_in_sale = []
+    @orders_a_preparer = []
     @orders_livre =[]
+    @orders_termine = []
     # garder les orders dont les articles <=> articles du user
     @orders.each do |order|
     @array_articles.each do |a|
       if order.article_id == a
         if order.a_preparer?
-          @orders_in_sale << order
-        elsif order.livre?
+          @orders_a_preparer << order
+        elsif order.confirme?
           @orders_livre << order
+        elsif order.livre?
+          @orders_termine << order
         end
       end
     end
