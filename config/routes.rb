@@ -17,4 +17,6 @@ Rails.application.routes.draw do
 
   get 'orders/mysales', to: 'orders#mysales', as: 'mysales'
 
+  get '/orders/confirme', to: 'orders#acheteur_confirme', as: 'confirme'
+
 end

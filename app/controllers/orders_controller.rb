@@ -2,13 +2,13 @@ class OrdersController < ApplicationController
 
   def myorders
     # achats en cours (statut = en_cours)
-    @orders = Order.where(user_id: current_user, status: :en_cours)
+    @orders = Order.en_cours.where(user_id: current_user)
     # achats en cours de prepa
-    @orders_prepa = Order.where(user_id: current_user, status: :a_preparer)
+    @orders_prepa = Order.a_preparer.where(user_id: current_user)
     # achats à récupérer (a_preparer + confirme)
-    @orders_a_recup = Order.where(user_id: current_user, status: :confirme)
+    @orders_a_recup = Order.confirme.where(user_id: current_user)
     # achats termines
-    @orders_historique = Order.where(user_id: current_user, status: :livre)
+    @orders_historique = Order.livre.where(user_id: current_user)
   end
 
   def create
@@ -65,6 +65,14 @@ class OrdersController < ApplicationController
       end
     end
   end
+end
+
+def acheteur_confirme
+  # acheteur confirme order --> order passe du statut en_cours à a_preparer
+  @order = Order.find(params[:id])
+  @order.status = :a_preparer
+  # retour à la page des achats
+  redirect_to my_orders_path
 end
 
 
