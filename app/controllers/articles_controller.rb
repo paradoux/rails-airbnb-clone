@@ -1,8 +1,17 @@
 class ArticlesController < ApplicationController
 
   before_action :set_article, only: [:update, :destroy]
+  skip_before_action :authenticate_user!, only: :index
+  after_action :flash_nil, only: :index
+
+  def flash_nil
+    flash[:notice] = nil
+  end
 
   def index
+
+    flash[:notice] = "Veuillez vous connecter pour commander" if current_user.nil?
+
     @articles = Article.order(active: :desc, id: :desc)
 
     if params[:format].nil?

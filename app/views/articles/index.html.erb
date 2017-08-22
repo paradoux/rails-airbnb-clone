@@ -1,11 +1,7 @@
 
 <div class="container">
-<h1 class="text-center">L'Épicerie</h1>
-<br>
-
-
-<div class="container">
-
+  <h1 class="text-center">L'Épicerie</h1>
+  <br>
   <div class="col-md-8 col-lg-8 col-xs-12">
     <ul>
       <% @articles.each do |article| %>
@@ -24,9 +20,11 @@
         <br>
         vendeur : <%= article.user.first_name + " " + article.user.last_name %>
         <br>
+        <% if !current_user.nil? %>
         <%= link_to "delete", article_path(article), method: :delete, class: "btn btn-primary" %>
         <%= link_to "mettre à jour", articles_path(article), class: "btn btn-primary" %>
         <%= link_to "add to order", new_order_path(article), method: :post, class: "btn btn-primary" %>
+        <% end %>
 
         <br>
         -------------------
@@ -34,3 +32,4 @@
       <% end %>
     </ul>
   </div>
+</div>
