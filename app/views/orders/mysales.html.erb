@@ -44,8 +44,7 @@
       ---------------------
     </div>
     <div class="col-xs-2">
-      <%= link_to "Préparation ok", prepare_path(order), class: "btn btn-primary" %>
-      <%= link_to "Annuler", annule_path(order), class: "btn btn-primary" %>
+      <%= link_to "preparation ok", change_statut_path(order, status: :confirme), class: "btn btn-primary" %>
     </div>
   <% end %>
   </div>

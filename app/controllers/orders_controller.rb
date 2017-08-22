@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
 
-  before_action :set_order, only: [:destroy, :acheteur_confirme, :vendeur_prepare, :acheteur_pickup, :annulation]
+  before_action :set_order, only: [:destroy, :change_statut, :vendeur_prepare, :acheteur_pickup, :annulation]
 
   def myorders
     # achats en cours (statut = en_cours)
@@ -70,27 +70,35 @@ class OrdersController < ApplicationController
   end
 end
 
-def acheteur_confirme
-  @type
-  @order.type!
-  redirect_to  myorders_path, notice: "La commande est confirmée! Le vendeur la prépare..."
+def change_statut
+  @order.status = params[:status]
+  @order.save!
+  if @order.a_preparer?
+    redirect_to  myorders_path, notice: "La commande est confirmée! Le vendeur la prépare..."
+  elsif @order.confirme?
+    redirect_to  myorders_path, notice: "La commande est préparée"
+  elsif @order.livre?
+    redirect_to  myorders_path, notice: "La commande a été récupérée"
+  elsif @order.annulle?
+    redirect_to  myorders_path, notice: "La commande est annulée"
+  end
 end
 
-def vendeur_prepare
-  @order.confirme!
-  redirect_to  myorders_path, notice: "La commande est préparée"
-end
+# def vendeur_prepare
+#   @order.confirme!
+#   redirect_to  myorders_path, notice: "La commande est préparée"
+# end
 
-def acheteur_pickup
-  @order.livre!
-  redirect_to  myorders_path, notice: "La commande a été récupérée"
-end
+# def acheteur_pickup
+#   @order.livre!
+#   redirect_to  myorders_path, notice: "La commande a été récupérée"
+# end
 
-def annulation
+# def annulation
 
-  @order.annulle!
-  redirect_to  myorders_path, notice: "La commande est annulée"
-end
+#   @order.annulle!
+#   redirect_to  myorders_path, notice: "La commande est annulée"
+# end
 
 def set_order
   @order = Order.find(params[:id])
