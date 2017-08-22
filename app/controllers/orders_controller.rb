@@ -1,5 +1,7 @@
 class OrdersController < ApplicationController
 
+  before_action :set_order, only: [:destroy, :acheteur_confirme, :vendeur_prepare, :acheteur_pickup, :annulation]
+
   def myorders
     # achats en cours (statut = en_cours)
     @orders = current_user.orders.en_cours
@@ -68,13 +70,29 @@ class OrdersController < ApplicationController
 end
 
 def acheteur_confirme
-  # acheteur confirme order --> order passe du statut en_cours à a_preparer
-  @order = Order.find(params[:id])
-  @order.status = :a_preparer
-  # retour à la page des achats
-  redirect_to my_orders_path
+  @order.a_preparer!
+  redirect_to  myorders_path, notice: "La commande est confirmée! Le vendeur la prépare..."
 end
 
+def vendeur_prepare
+  @order.confirme!
+  redirect_to  myorders_path, notice: "La commande est préparée"
+end
+
+def acheteur_pickup
+  @order.livre!
+  redirect_to  myorders_path, notice: "La commande a été récupérée"
+end
+
+def annulation
+
+  @order.annulle!
+  redirect_to  myorders_path, notice: "La commande est annulée"
+end
+
+def set_order
+  @order = Order.find(params[:id])
+end
 
 end
 

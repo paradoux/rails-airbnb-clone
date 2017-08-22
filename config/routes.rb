@@ -17,6 +17,11 @@ Rails.application.routes.draw do
 
   get 'orders/mysales', to: 'orders#mysales', as: 'mysales'
 
-  get '/orders/confirme', to: 'orders#acheteur_confirme', as: 'confirme'
+  get '/articles/search', to: 'articles#search'
+
+  get 'orders/:id/confirme', to: 'orders#acheteur_confirme', as: 'confirme'
+  get 'orders/:id/prepare', to: 'orders#vendeur_prepare', as: 'prepare'
+  get 'orders/:id/livre', to: 'orders#acheteur_pickup', as: 'livre'
+  get 'orders/:id/annule', to: 'orders#annulation', as: 'annule'
 
 end

@@ -29,7 +29,7 @@
   <% end %>
 </div>
 
-<h1>Mes achats en cours de préparation</h1>
+<h1>Mes achats en préparation</h1>
 <div class="container achats-a-recuperer">
   <% @orders_prepa.each do |order| %>
   <div class="col-xs-10">
@@ -45,8 +45,7 @@
     ---------------------
   </div>
   <div class="col-xs-2">
-
-    <%= link_to "supprimer", destroy_order_path(order), method: :delete, class: "btn btn-primary" %>
+    <%= link_to "annuler", annule_path(order), class: "btn btn-primary" %>
   </div>
   <% end %>
 </div>
@@ -68,8 +67,7 @@
     ---------------------
   </div>
   <div class="col-xs-2">
-
-    <%= link_to "supprimer", destroy_order_path(order), method: :delete, class: "btn btn-primary" %>
+    <%= link_to "confirmer pickup", livre_path(order), class: "btn btn-primary" %>
   </div>
   <% end %>
 </div>
