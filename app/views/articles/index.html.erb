@@ -22,7 +22,7 @@
         <br>
         <% if !current_user.nil? %>
         <%= link_to "delete", article_path(article), method: :delete, class: "btn btn-primary" %>
-        <%= link_to "mettre à jour", articles_path(article), class: "btn btn-primary" %>
+        <%= link_to "mettre à jour", mysales_path(article), class: "btn btn-primary" %>
         <%= link_to "add to order", new_order_path(article), method: :post, class: "btn btn-primary" %>
         <% end %>
 
