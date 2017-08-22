@@ -7,8 +7,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   has_many :articles, dependent: :destroy
   has_many :orders, dependent: :destroy
+  has_attachment :profile_picture
 
-   private
+private
 
   def send_welcome_email
     UserMailer.welcome(self).deliver_now

@@ -1,0 +1,30 @@
+<div class="container">
+<h1 class="text-center">L'Épicerie</h1>
+<br>
+
+
+<div class="container">
+
+  <div class="col-md-8 col-lg-8 col-xs-12">
+    <ul>
+      <% @articles.each do |article| %>
+      <li>
+
+        <b> #<%= article.active %># <%= article.name %></b> : <%= article.description %>
+        <br>
+        <%= article.quantity %>
+        <%= article.unit %>
+        <br>
+        prix : <i><b><%= article.price %>€</b></i>
+        <br>
+        <br>
+        <%= link_to "delete", article_path(article), method: :delete, class: "btn btn-primary" %>
+        <%= link_to "mettre à jour", articles_path(article), class: "btn btn-primary" %>
+        <%= link_to "add to order", new_order_path(article), method: :post, class: "btn btn-primary" %>
+
+        <br>
+        -------------------
+      </li>
+      <% end %>
+    </ul>
+  </div>
