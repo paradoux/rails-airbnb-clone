@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
 
-  before_action :set_order, only: [:destroy, :change_statut, :vendeur_prepare, :acheteur_pickup, :annulation]
+  before_action :set_order, only: [:destroy, :change_statut]
 
   def myorders
     # achats en cours (statut = en_cours)
@@ -83,22 +83,6 @@ def change_statut
     redirect_to  myorders_path, notice: "La commande est annulée"
   end
 end
-
-# def vendeur_prepare
-#   @order.confirme!
-#   redirect_to  myorders_path, notice: "La commande est préparée"
-# end
-
-# def acheteur_pickup
-#   @order.livre!
-#   redirect_to  myorders_path, notice: "La commande a été récupérée"
-# end
-
-# def annulation
-
-#   @order.annulle!
-#   redirect_to  myorders_path, notice: "La commande est annulée"
-# end
 
 def set_order
   @order = Order.find(params[:id])
