@@ -12,6 +12,7 @@ class OrdersController < ApplicationController
                        comment: "new order"
                        )
     if @order.save
+      OrderMailer.prepare(@order).deliver_now
       redirect_to myorders_path, notice: "Une commande a été créée"
     else
       render 'articles/index'
