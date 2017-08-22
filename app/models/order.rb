@@ -1,4 +1,6 @@
 class Order < ApplicationRecord
+  after_create :send_order_create_email
+
   belongs_to :user
   belongs_to :article
 
@@ -8,5 +10,11 @@ class Order < ApplicationRecord
   # 3. vendeur confirme preparation => :confirme
   # 4. acheteur confirme pickup => :livre
   # 5. vendeur, acheteur ont la possibilité d'annuler l'order
+
+  private
+
+  def send_order_create_email
+    OrderMailer.prepare(self).deliver_now
+  end
 
 end

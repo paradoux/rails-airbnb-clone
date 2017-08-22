@@ -1,0 +1,14 @@
+<p>Bonjour <%= @order.article.user.first_name %> </p>
+
+<p>La commande n°<%=@order.id%> contenant l'article : <%= @order.article.name %> doit être préparée pour <%= @order.user.first_name %></p>
+<p>Il viendra la récupérer le : <%= @order.article.delivery_date %> au Café l'écomotive 2 place des marseillaises. </p>
+
+Pour consulter le status de vos commandes rendez vous sur :
+<%= link_to "vos commandes", articles_url %>
+
+
+<p>Bonne journée !</p>
+
+
+
+
