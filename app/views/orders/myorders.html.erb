@@ -1,6 +1,7 @@
 <%= link_to "back", articles_path, class: "btn btn-primary" %>
 
 <div class="btn btn-primary en-cours">Mes achats en cours</div>
+<div class="btn btn-primary a-recuperer">Mes achats en préparation</div>
 <div class="btn btn-primary a-recuperer">Mes achats à récupérer</div>
 <div class="btn btn-primary historique">Historique des achats</div> <br><br>
 
@@ -11,6 +12,29 @@
   <div class="col-xs-10">
     <b> <%= order.article.name %> de <%= order.user.first_name %> </b><i> (<%= order.status %>)</i>
     <br
+    <%= order.article.quantity %>
+    <%= order.article.unit %>
+    <br>
+    prix : <i><b><%= order.article.price %>€</b></i>
+    <br>
+    vendeur : <%= order.article.user.first_name + " " + order.article.user.last_name %>
+    <br>
+    ---------------------
+  </div>
+  <div class="col-xs-2">
+
+    <%= link_to "supprimer", destroy_order_path(order), method: :delete, class: "btn btn-primary" %>
+    <%= link_to "confirmer", confirme_path(order), class: "btn btn-primary" %>
+  </div>
+  <% end %>
+</div>
+
+<h1>Mes achats en cours de préparation</h1>
+<div class="container achats-a-recuperer">
+  <% @orders_prepa.each do |order| %>
+  <div class="col-xs-10">
+    <b> <%= order.article.name %> de <%= order.user.first_name %> </b><i> (<%= order.status %>)</i>
+    <br>
     <%= order.article.quantity %>
     <%= order.article.unit %>
     <br>
@@ -49,7 +73,6 @@
   </div>
   <% end %>
 </div>
-
 
 
 <h1>Historique des achats</h1>
