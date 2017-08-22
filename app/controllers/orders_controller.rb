@@ -2,13 +2,13 @@ class OrdersController < ApplicationController
 
   def myorders
     # achats en cours (statut = en_cours)
-    @orders = Order.en_cours.where(user_id: current_user)
+    @orders = current_user.orders.en_cours
     # achats en cours de prepa
-    @orders_prepa = Order.a_preparer.where(user_id: current_user)
+      @orders = current_user.orders.a_preparer
     # achats à récupérer (a_preparer + confirme)
-    @orders_a_recup = Order.confirme.where(user_id: current_user)
+      @orders = current_user.orders.confirme
     # achats termines
-    @orders_historique = Order.livre.where(user_id: current_user)
+      @orders = current_user.orders.termine
   end
 
   def create
