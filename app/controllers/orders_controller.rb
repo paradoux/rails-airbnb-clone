@@ -4,11 +4,11 @@ class OrdersController < ApplicationController
     # achats en cours (statut = en_cours)
     @orders = current_user.orders.en_cours
     # achats en cours de prepa
-      @orders = current_user.orders.a_preparer
+      @orders_prepa = current_user.orders.a_preparer
     # achats à récupérer (a_preparer + confirme)
-      @orders = current_user.orders.confirme
+      @orders_a_recup = current_user.orders.confirme
     # achats termines
-      @orders = current_user.orders.termine
+      @orders_historique = current_user.orders.livre
   end
 
   def create
