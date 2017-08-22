@@ -40,6 +40,8 @@ gem 'annotate', '~> 2.7', '>= 2.7.1'
 # google maps
 gem 'gmaps4rails'
 
+#facebook-connect
+gem 'omniauth-facebook'
 
 group :development, :test do
   gem 'pry-byebug'

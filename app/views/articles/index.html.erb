@@ -1,25 +1,25 @@
 
 <div class="container">
-<h1 class="text-center">L'Épicerie</h1>
-<br>
+  <h1 class="text-center">L'Épicerie</h1>
+  <br>
 
-<div class="container">
-  <div class="row">
-        <div class="col-md-6">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
         <h2>Rechercher un article</h2>
-            <div id="custom-search-input">
-                <div class="input-group col-md-12">
-                <form action="/articles/search" method= "get">
-                    <input type="text" class="form-control input-lg" placeholder="Rechercher" name="query" />
-                    <span class="input-group-btn">
-                        <input class="btn btn-info btn-lg" type="submit">
-                            <i class="glyphicon glyphicon-search"></i>
-                        </input>
-                        </form>
-                    </span>
-                </div>
-            </div>
+        <div id="custom-search-input">
+          <div class="input-group col-md-12">
+            <form action="/articles/search" method= "get">
+              <input type="text" class="form-control input-lg" placeholder="Rechercher" name="query" />
+              <span class="input-group-btn">
+                <input class="btn btn-info btn-lg" type="submit">
+                <i class="glyphicon glyphicon-search"></i>
+              </input>
+            </form>
+          </span>
         </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -31,6 +31,11 @@
     <ul>
       <% @articles.each do |article| %>
       <li>
+        <% if article.photo? %>
+        <%= cl_image_tag article.photo.path, width: 100, height: 100, crop: :fill %>
+        <% elsif article.image? %>
+        <%= cl_image_tag article.image, width: 100, height: 100, crop: :fill %>
+        <% end %>
         <b> #<%= article.active %># <%= article.name %></b> : <%= article.description %>
         <br>
         <%= article.quantity %>
@@ -38,6 +43,7 @@
         <br>
         prix : <i><b><%= article.price %>€</b></i>
         <br>
+        vendeur : <%= article.user.first_name + " " + article.user.last_name %>
         <br>
         <%= link_to "delete", article_path(article), method: :delete, class: "btn btn-primary" %>
         <%= link_to "mettre à jour", articles_path(article), class: "btn btn-primary" %>
