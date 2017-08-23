@@ -1,27 +1,26 @@
 <%= render 'orders/buttonsachats' %>
 
-<div class="container" id="achatsEnCours">
+<div class="container" id="inbox" style="margin:20px; align-items:center">
 <h1>Mes achats en cours</h1>
 <% if @orders.count == 0  %>
   <h3>pas d'achats en cours, <%= link_to "créez une commande!", articles_path %></h3>
   <% end %>
-  <% @orders.each do |order| %>
-  <div class="col-xs-10">
-    <b> <%= order.article.name %> de <%= order.user.first_name %> </b><i> (<%= order.status %>)</i>
-    <br
-    <%= order.article.quantity %>
-    <%= order.article.unit %>
-    <br>
-    prix : <i><b><%= order.article.price %>€</b></i>
-    <br>
-    vendeur : <%= order.article.user.first_name + " " + order.article.user.last_name %>
-    <br>
-    ---------------------
+    <div class="row message unread" style="border-bottom: 1px solid #ccc; padding: 0.4em 0; cursor: pointer; font-weight: bold;
+  background-color: white;">
+      <div class="col-xs-3">Commande</div>
+      <div class="col-xs-3">Vendeur</div>
+      <div class="col-xs-3">Prix</div>
+      <div class="col-xs-3">Actions</div>
+    </div>
+    <% @orders.each do |order| %>
+    <div class="row message read" style="background-color: #eee;">
+      <div class="col-xs-3"><%= order.article.name.upcase %> </div>
+      <div class="col-xs-3"><%= order.user.first_name %></div>
+      <div class="col-xs-3"><%= order.article.price %>€</div>
+      <div class="col-xs-3">
+        <%= link_to "", destroy_order_path(order), method: :delete, class: "fa fa-trash-o", style: "color:#6D516B; font-size:50px; left:50px; align-items: right;"%>
+        <%= link_to "", change_statut_path(order, status: :a_preparer), class: "fa fa-check-circle", style: "color:#6D516B; font-size:50px;" %>
+      </div>
+    </div>
+    <% end %>
   </div>
-  <div class="col-xs-2">
-
-    <%= link_to "supprimer", destroy_order_path(order), method: :delete, class: "btn btn-primary" %>
-    <%= link_to "confirmer", change_statut_path(order, status: :a_preparer), class: "btn btn-primary" %>
-  </div>
-  <% end %>
-</div>

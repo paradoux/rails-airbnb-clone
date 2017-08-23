@@ -3,9 +3,12 @@ class OrdersController < ApplicationController
   before_action :set_order, only: [:destroy, :change_statut]
 
   def myorders
-    @status = params[:status]
     @order = Order.new
     @order.status = params[:status]
+    if params[:status].nil?
+      @order.en_cours!
+    end
+
     if @order.en_cours?
       @orders = current_user.orders.en_cours
       render 'a'
@@ -78,6 +81,9 @@ def mysales
   @status = params[:status]
   @order = Order.new
   @order.status = params[:status]
+     if params[:status].nil?
+      @order.en_cours!
+    end
   if @order.en_cours?
     render '_mesproduits'
   elsif @order.a_preparer?
