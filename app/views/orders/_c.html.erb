@@ -1,7 +1,10 @@
-<%= render 'orders/buttons' %>
+<%= render 'orders/buttonsachats' %>
 
 <div class="container" id="achatsARecuperer">
 <h1>Mes achats à récupérer</h1>
+<% if @orders.count == 0  %>
+  <h3>pas d'achats à récupérer, <%= link_to "créez une commande!", articles_path %></h3>
+  <% end %>
   <% @orders.each do |order| %>
   <div class="col-xs-10">
     <b> <%= order.article.name %> de <%= order.user.first_name %> </b><i> (<%= order.status %>)</i>

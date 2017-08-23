@@ -1,6 +1,3 @@
-<%= link_to "back", articles_path, class: "btn btn-primary" %>
-<%= link_to "Mes achats en cours", myorders_path(status: :en_cours), class: "btn btn-primary" %>
-<%= link_to "Mes achats en préparation", myorders_path(status: :a_preparer), class: "btn btn-primary" %>
-<%= link_to "Mes achats à récupérer", myorders_path(status: :confirme), class: "btn btn-primary" %>
-<%= link_to "Historique", myorders_path(status: :livre), class: "btn btn-primary" %>
-<br>
+<%=  render 'buttonsachats'%>
+
+<h2>Balladez vous dans vos commandes</h2>
