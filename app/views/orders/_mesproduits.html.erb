@@ -1,35 +1,37 @@
 <%= render 'orders/buttonsventes' %>
+  <div class="row">
 <div class="container" id="mesProduits">
   <h1>Mes produits</h1>
-  <div class="col-md-4 col-lg-4 col-xs-12">
-  <p>Ajoutez un article</p>
-    <%= render 'form', article: @article %>
-  </div>
-  <div class="col-md-8 col-lg-8 col-xs-12">
-
-    <div class="container" id="inbox">
-      <% if @articles.count == 0  %>
-      <h3>pas de produits, faites vous plaiz', créez en un!</h3>
-      <% end %>
-      <div class="row message unread" style="border-bottom: 1px solid #ccc; padding: 0.4em 0; cursor: pointer; font-weight: bold;
-      background-color: white;">
-      <div class="col-xs-4">Produits</div>
-      <div class="col-xs-2">Prix</div>
-      <div class="col-xs-3">Vendeur</div>
+    <div class="col-md-2 col-lg-4 col-xs-12">
+      <p>Ajoutez un article</p>
+      <%= render 'form', article: @article %>
     </div>
-    <% @articles.each do |article| %>
-    <div class="row message read" style="background-color: #eee;">
-      <div class="col-xs-4"><%= article.description %> </div>
-      <div class="col-xs-2"><%=  article.price  %>€</div>
-      <div class="col-xs-3"><%= article.user.first_name + " " + article.user.last_name %> -
-      <%= link_to "", article_path(article), method: :post, class: "fa fa-pencil-square-o", style: "color:#6D516B; font-size:40px;" %>
-      <%= link_to "", article_path(article), method: :delete, class: "fa fa-trash-o", style: "color:#6D516B; font-size:40px;" %>
+    </div>
+    <div class="container" id="inbox">
+    <div class="col-md-2 col-lg-8 col-xs-12">
+        <% if @articles.count == 0  %>
+        <h3>pas de produits, faites vous plaiz', créez en un!</h3>
+        <% end %>
+        <div class="row message unread" style="border-bottom: 1px solid #ccc; padding: 0.4em 0; cursor: pointer; font-weight: bold;
+        background-color: white;">
+        <div class="col-xs-4">Produits</div>
+        <div class="col-xs-2">Prix</div>
+        <div class="col-xs-3">Vendeur</div>
       </div>
+      <% @articles.each do |article| %>
+      <div class="row message read" style="background-color: #eee;">
+        <div class="col-xs-4"><%= article.description %> </div>
+        <div class="col-xs-2"><%=  article.price  %>€</div>
+        <div class="col-xs-3"><%= article.user.first_name + " " + article.user.last_name %> -
+          <%= link_to "", article_path(article), method: :post, class: "fa fa-pencil-square-o", style: "color:#6D516B; font-size:40px;" %>
+          <%= link_to "", article_path(article), method: :delete, class: "fa fa-trash-o", style: "color:#6D516B; font-size:40px;" %>
+        </div>
       </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 </div>
-</div>
+
 
 
 
