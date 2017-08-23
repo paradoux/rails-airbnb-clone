@@ -1,0 +1,48 @@
+$iconColor: white;
+$color: #2F9716;
+
+.searchbar {
+  margin-top: 10px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.search {
+  width: 100%;
+  position: relative;
+  opacity: 0.7;
+  &:before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    font-family: 'FontAwesome';
+    content: '\f002';
+    background: $color;
+    text-align: center;
+    color: $iconColor;
+    border-radius: 5px;
+    -webkit-font-smoothing: subpixel-antialiased;
+    font-smooth: always;
+  }
+}
+.searchTerm {
+  @include box-sizing(border-box);
+  width: 100%;
+  border: 3px solid $color;
+  padding: 5px;
+  height: 40px;
+  border-radius: 5px;
+  outline: none;
+}
+.searchButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  opacity: 0;
+  cursor: pointer;
+}
