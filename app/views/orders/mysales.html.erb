@@ -6,32 +6,35 @@
 <div class="btn btn-primary historique">Historique</div> <br><br>
 
 <div class="container">
+  <div class="row">
     <h1>Mes produits</h1>
-  <div class="col-md-4 col-lg-4 col-xs-12">
-    <%= render 'form', article: @article %>
-  </div>
-  <div class="col-md-8 col-lg-8 col-xs-12">
-    <% @articles.each do |article| %>
-    <div class="col-xs-10">
-      <b> <%= article.name %>  </b><i> (<%= article.quantity%>(<%= article.unit %>)</i>
-      <br
-      <%= article.description %>
-      <br>
-      prix : <i><b><%= article.price %>€</b></i>
-      <br>
-      vendeur : <%= article.user.first_name + " " + article.user.last_name %>
-      <br>
-      ---------------------
+    <div class="col-md-4 col-lg-4 col-xs-12">
+      <%= render 'form', article: @article %>
     </div>
-    <% end %>
   </div>
+</div>
+<div class="col-md-8 col-lg-8 col-xs-12">
+  <% @articles.each do |article| %>
+  <div class="col-xs-10">
+    <b> <%= article.name %>  </b><i> (<%= article.quantity%>(<%= article.unit %>)</i>
+    <br
+    <%= article.description %>
+    <br>
+    prix : <i><b><%= article.price %>€</b></i>
+    <br>
+    vendeur : <%= article.user.first_name + " " + article.user.last_name %>
+    <br>
+    ---------------------
+  </div>
+  <% end %>
+</div>
 </div>
 
 <div class="container">
   <h1>Mes commandes à préparer</h1>
   <div class="col-md-8 col-lg-8 col-xs-12">
     <% @orders_a_preparer.each do |order| %>
-      <div class="col-xs-10">
+    <div class="col-xs-10">
       <b> <%= order.article.name %>  </b><i> (<%= order.status %>)</i>
       <br>
       <%= order.article.quantity %>
@@ -46,7 +49,7 @@
     <div class="col-xs-2">
       <%= link_to "preparation ok", change_statut_path(order, status: :confirme), class: "btn btn-primary" %>
     </div>
-  <% end %>
+    <% end %>
   </div>
 </div>
 

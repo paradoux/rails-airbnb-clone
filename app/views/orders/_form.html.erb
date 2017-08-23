@@ -1,20 +1,40 @@
-<%= simple_form_for @article do |f| %>
-<%= f.error_notification %>
-<%= f.input :name, placeholder: "nom", label: false %>
-<%= f.input :description, placeholder: "description", label: false%>
-<div class="form-group">
-  <div class="col-xs-4">
-    <%= f.input :quantity, placeholder: "quantity", label:false  %>
-  </div>
-  <div class="col-xs-4">
-    <%= f.input :unit, placeholder: "unit", collection: Article.units, label:false %>
-  </div>
-  <div class="col-xs-4">
-    <%= f.input :price, placeholder: "prix", label:false %>
-  </div>
-</div>
-<%= f.input :photo, as: :attachinary, placeholder: "chemin image", label:false %>
+<div class="container_form">
 
-<%= f.input :delivery_date, label: "DLC" %>
-<%= f.submit "Valider", class: "btn" %>
-<% end %>
+  <div class="row">
+    <%= simple_form_for @article do |f| %>
+    <%= f.error_notification %>
+
+    <div class="col-xs-12">
+      <%= f.input :name, placeholder: "Nom", label: false %>
+    </div>
+    <div class="col-xs-12">
+      <%= f.input :description, placeholder: "Description", label: false%>
+    </div>
+    <div>
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        <div class="form-group">
+          <%= f.input :quantity, placeholder: "Qte", label:false  %>
+        </div>
+      </div>
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        <div class="form-group">
+          <%= f.input :unit, placeholder: "Unitée", collection: Article.units, label:false %>
+        </div>
+      </div>
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        <div class="form-group">
+          <%= f.input :price, placeholder: "Prix", label:false %>
+        </div>
+      </div>
+      <div class="text-center">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <%= f.input :photo, as: :attachinary, placeholder: "chemin image", label:false %>
+          </div>
+        </div>
+        <%= f.input :delivery_date, label: "Date de livraison" %>
+        <%= f.submit "Valider", class: "btn btn-success" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
