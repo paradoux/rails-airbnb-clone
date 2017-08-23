@@ -2,8 +2,8 @@
 
 <div class="btn btn-primary en-cours">Mes produits</div>
 <div class="btn btn-primary a-recuperer">Mes commandes à préparer</div>
-<div class="btn btn-primary historique">Mes commandes livrées</div> <br><br>
-
+<div class="btn btn-primary historique">Mes commandes en attente pickup</div>
+<div class="btn btn-primary historique">Historique</div> <br><br>
 
 <div class="container">
     <h1>Mes produits</h1>
@@ -44,14 +44,14 @@
       ---------------------
     </div>
     <div class="col-xs-2">
-    <!-- btn à mettre -->
+      <%= link_to "preparation ok", change_statut_path(order, status: :confirme), class: "btn btn-primary" %>
     </div>
   <% end %>
   </div>
 </div>
 
 <div class="container">
-  <h1>Mes commandes livrées</h1>
+  <h1>Mes commandes en attente pickup</h1>
   <div class="col-md-8 col-lg-8 col-xs-12">
     <% @orders_livre.each do |order| %>
     <div class="col-xs-10">

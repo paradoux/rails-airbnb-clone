@@ -1,0 +1,102 @@
+.flex {
+  padding-right: 8px;
+  padding-left: 8px;
+}
+.card-wrapper {
+  box-shadow: 2px 2px 2px #E7E7E7;
+  border-radius: 5px;
+  padding: 0px;
+  margin-top: 15px;
+  margin-bottom: 10px ;
+
+}
+.card {
+  height: 150px;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+  background-size: cover !important;
+  background-position: center;
+  color: white;
+  position: relative;
+  border-radius: 2px 2px 0 0;
+
+}
+
+.card-cart i {
+  position: absolute;
+  font-size: 30px;
+  right: 10px;
+  top: 10px;
+  color:white;
+}
+
+.card-details {
+  height: 50px;
+  background-color: white;
+  color: #393939;
+  position: relative;
+  border-radius: 0px 0px 2px 2px;
+}
+.card-user {
+  position: absolute;
+  right: 10px;
+  top: -30px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: solid #F2F2F2 2px;
+
+}
+.card-name-desc {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  height: 110px;
+
+}
+.card-name-desc h2 {
+  font-size: 22px;
+  margin-top: 5px;
+  margin-right: 45px;
+  text-transform: uppercase;
+}
+
+.card-name-desc p {
+  font-size: 14px;
+  opacity: 0.9;
+  font-weight: lighter;
+}
+
+.card-vendor-name {
+  position: absolute;
+  top: 2px;
+  right: 75px;
+  font-size: 12px;
+  text-align: right;
+}
+
+.card-vendor-name p {
+  margin:0px;
+}
+.card-quantity-price {
+  position: absolute;
+  bottom: 11px;
+  left: 5px;
+  font-size: 16px;
+  font-weight:bolder;
+
+}
+
+
+.card-link {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  z-index: 2;
+  background: black;
+  opacity: 0;
+}
+.card-link:hover {
+  opacity: 0.1;
+}

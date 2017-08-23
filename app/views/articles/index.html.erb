@@ -1,35 +1,64 @@
 
 <div class="container">
-  <h1 class="text-center">L'Épicerie</h1>
-  <br>
-  <div class="col-md-8 col-lg-8 col-xs-12">
-    <ul>
-      <% @articles.each do |article| %>
-      <li>
-       <% if article.photo? %>
-          <%= cl_image_tag article.photo.path, width: 100, height: 100, crop: :fill %>
-        <% elsif article.image? %>
-          <%= cl_image_tag article.image, width: 100, height: 100, crop: :fill %>
-        <% end %>
-        <b> #<%= article.active %># <%= article.name %></b> : <%= article.description %>
-        <br>
-        <%= article.quantity %>
-        <%= article.unit %>
-        <br>
-        prix : <i><b><%= article.price %>€</b></i>
-        <br>
-        vendeur : <%= article.user.first_name + " " + article.user.last_name %>
-        <br>
-        <% if !current_user.nil? %>
-        <%= link_to "delete", article_path(article), method: :delete, class: "btn btn-primary" %>
-        <%= link_to "mettre à jour", articles_path(article), class: "btn btn-primary" %>
-        <%= link_to "add to order", new_order_path(article), method: :post, class: "btn btn-primary" %>
-        <% end %>
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Rechercher un article</h2>
+      <div id="custom-search-input">
+        <div class="input-group col-md-12">
+          <form action="/articles/search" method= "get">
+            <input type="text" class="form-control input-lg" placeholder="Rechercher" name="query" />
+            <span class="input-group-btn">
+              <input class="btn btn-info btn-lg" type="submit">
+                <i class="glyphicon glyphicon-search"></i>
+              </input>
+            </span>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
-        <br>
-        -------------------
-      </li>
-      <% end %>
-    </ul>
+  <div class="row">
+    <% @articles.each do |article| %>
+    <div class="col-xs-12 col-sm-4 col-lg-3 flex">
+      <div class="card-wrapper">
+        <% if article.photo? %>
+        <% photo = article.photo.path %>
+        <% elsif article.image? %>
+        <% photo = article.image %>
+        <% end %>
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path photo, width: 200, height: 200, crop: :fill %>');">
+
+          <div class="card-name-desc">
+            <h2><%= article.name %></h2>
+            <p><%= article.description %></p>
+          </div>
+          <div class="card-cart">
+            <% if !current_user.nil? %>
+            <%= link_to new_order_path(article), method: :post do %>
+            <i class="fa fa-cart-plus" aria-hidden="true"></i>
+            <% end %>
+            <% end %>
+          </div>
+        </div>
+        <div class="card-details">
+          <% if article.user.profile_picture? %>
+          <%= cl_image_tag article.user.profile_picture.path, width:300, height:300, crop: fill, gravity: :face, class: "card-user" %>
+          <% else %>
+          <%= image_tag "http://placehold.it/30x30", class: "card-user" %>
+          <% end %>
+          <div class="card-vendor-name">
+            <p><%= article.user.last_name %></p>
+            <p><%= article.user.first_name %></p>
+          </div>
+          <div class="card-quantity-price">
+            <%= article.quantity %><%= article.unit %> pour <%= article.price %>€
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
   </div>
 </div>
+
+

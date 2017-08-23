@@ -1,0 +1,14 @@
+<p>Bonjour <%= @order.article.user.first_name %> </p>
+
+<p>Vous devez préparer la commande <b>n°<%=@order.id%> (<%=  @order.article.quantity.to_s + @order.article.unit + " de " + @order.article.name %>) pour <%= @order.user.first_name %></b>.</p>
+<p><%= @order.user.first_name %> viendra la récupérer le : <b> <%= @order.article.delivery_date %> </b> au Café l'Ecomotive 2 place des marseillaises. </p>
+
+Pour consulter le status de vos commandes rendez vous sur :
+<%= link_to "vos commandes", mysales_url %>
+
+
+<p>Bonne journée !</p>
+
+
+
+

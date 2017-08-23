@@ -1,5 +1,7 @@
 class OrdersController < ApplicationController
 
+  before_action :set_order, only: [:destroy, :change_statut]
+
   def myorders
     # achats en cours (statut = en_cours)
     @orders = current_user.orders.en_cours
@@ -19,6 +21,7 @@ class OrdersController < ApplicationController
       comment: "new order"
       )
     if @order.save
+
       redirect_to myorders_path, notice: "Une commande a été créée"
     else
       render 'articles/index'
@@ -67,10 +70,22 @@ class OrdersController < ApplicationController
   end
 end
 
-def acheteur_confirme
+def change_statut
+  @order.status = params[:status]
+  @order.save!
+  if @order.a_preparer?
+    redirect_to  myorders_path, notice: "La commande est confirmée! Le vendeur la prépare..."
+  elsif @order.confirme?
+    redirect_to  myorders_path, notice: "La commande est préparée"
+  elsif @order.livre?
+    redirect_to  myorders_path, notice: "La commande a été récupérée"
+  elsif @order.annulle?
+    redirect_to  myorders_path, notice: "La commande est annulée"
+  end
+end
+
+def set_order
   @order = Order.find(params[:id])
-  @order.confirme!
-  redirect_to  myorders_path, notice: "La commande est confirmée! Le vendeur la prépare..."
 end
 
 end

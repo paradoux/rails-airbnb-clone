@@ -7,12 +7,12 @@ class ArticlesController < ApplicationController
   def flash_nil
     flash[:notice] = nil
   end
-
+  
   def index
 
     flash[:notice] = "Veuillez vous connecter pour commander" if current_user.nil?
 
-    @articles = Article.order(active: :desc, id: :desc)
+    @articles = Article.actif.order(id: :desc)
 
     if params[:format].nil?
       @article = Article.new
@@ -47,6 +47,18 @@ class ArticlesController < ApplicationController
     redirect_to articles_path, notice: "L'article a été effacé ainsi que toutes les commandes qui lui sont liées"
   end
 
+  def search
+    @articles = Article.where('name LIKE :search', search: "%#{params[:query]}%")
+    if @articles == nil
+      @artciles = Article.where('description LIKE :search', search: "%#{params[:query]}%")
+    end
+    # search = params[:query]
+    # @results = ActiveRecord::Base.connection.execute("SELECT * FROM articles WHERE name = '#{search}'")
+    # @articles = @results.to_a
+    # redirect_to articles_search_path
+  end
+
+
   private
 
   def set_article
@@ -58,5 +70,7 @@ class ArticlesController < ApplicationController
     params.require(:article).permit(:name, :description, :quantity, :unit, :image, :price, :delivery_date, :photo)
 
   end
+
+
 
 end

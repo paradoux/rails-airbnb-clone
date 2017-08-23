@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
 
+
   devise_for :users,
   controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
 
   root to: 'articles#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -19,6 +24,8 @@ Rails.application.routes.draw do
 
   get 'orders/mysales', to: 'orders#mysales', as: 'mysales'
 
-  get 'orders/:id/confirme', to: 'orders#acheteur_confirme', as: 'confirme'
+  get '/articles/search', to: 'articles#search'
+
+  get 'orders/:id/:status', to: 'orders#change_statut', as: 'change_statut'
 
 end
