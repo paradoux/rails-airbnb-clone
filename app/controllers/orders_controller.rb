@@ -3,14 +3,22 @@ class OrdersController < ApplicationController
   before_action :set_order, only: [:destroy, :change_statut]
 
   def myorders
-    # achats en cours (statut = en_cours)
-    @orders = current_user.orders.en_cours
-    # achats en cours de prepa
-      @orders_prepa = current_user.orders.a_preparer
-    # achats à récupérer (a_preparer + confirme)
-      @orders_a_recup = current_user.orders.confirme
-    # achats termines
-      @orders_historique = current_user.orders.livre
+    @status = params[:status]
+    @order = Order.new
+    @order.status = params[:status]
+    if @order.en_cours?
+      @orders = current_user.orders.en_cours
+      render 'a'
+    elsif @order.a_preparer?
+      @orders = current_user.orders.a_preparer
+      render '_b'
+    elsif @order.confirme?
+      @orders = current_user.orders.confirme
+      render '_c'
+    elsif @order.livre?
+      @orders = current_user.orders.livre
+      render '_d'
+    end
   end
 
   def create
@@ -35,18 +43,17 @@ class OrdersController < ApplicationController
   end
 
 
-  def mysales
+def mysales
 # param du form
-    if params[:format].nil?
-      @article = Article.new
-    else
-      @article = Article.find(params[:format])
-    end
-
-    # articles en cours de vente pour le user
-      @articles = Article.where(user_id: current_user)
-      @array_articles = []
-      # contruire array qui contient tous les articles du user
+  if params[:format].nil?
+    @article = Article.new
+  else
+    @article = Article.find(params[:format])
+  end
+  # articles en cours de vente pour le user
+    @articles = Article.where(user_id: current_user)
+    @array_articles = []
+    # contruire array qui contient tous les articles du user
       @articles.each do |article|
         @array_articles << article.id
       end
@@ -67,6 +74,21 @@ class OrdersController < ApplicationController
         end
       end
     end
+  end
+  @status = params[:status]
+  @order = Order.new
+  @order.status = params[:status]
+  if @order.en_cours?
+    render '_mesproduits'
+  elsif @order.a_preparer?
+    @orders = @orders_a_preparer
+    render '_e'
+  elsif @order.confirme?
+    @orders = @orders_livre
+    render '_f'
+  elsif @order.livre?
+    @orders = @orders_termine
+    render '_g'
   end
 end
 

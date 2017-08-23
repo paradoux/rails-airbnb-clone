@@ -1,13 +1,13 @@
 class ArticlesController < ApplicationController
 
   before_action :set_article, only: [:update, :destroy]
-  skip_before_action :authenticate_user!, only: :index
+  skip_before_action :authenticate_user!, only: [:index, :search]
   after_action :flash_nil, only: :index
 
   def flash_nil
     flash[:notice] = nil
   end
-  
+
   def index
 
     flash[:notice] = "Veuillez vous connecter pour commander" if current_user.nil?
@@ -48,9 +48,16 @@ class ArticlesController < ApplicationController
   end
 
   def search
-    @articles = Article.where('name LIKE :search', search: "%#{params[:query]}%")
-    if @articles == nil
-      @artciles = Article.where('description LIKE :search', search: "%#{params[:query]}%")
+    params[:query].downcase!
+    if params[:query] == ""
+      redirect_to articles_path
+    else
+      @articles = Article.where('name LIKE :search', search: "%#{params[:query]}%")
+      if @articles == nil
+        @articles = Article.where('description LIKE :search', search: "%#{params[:query]}%")
+      end
+      flash[:notice] = "Veuillez vous connecter pour commander" if current_user.nil?
+      render :index
     end
     # search = params[:query]
     # @results = ActiveRecord::Base.connection.execute("SELECT * FROM articles WHERE name = '#{search}'")
