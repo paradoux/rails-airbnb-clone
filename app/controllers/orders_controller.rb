@@ -21,7 +21,7 @@ class OrdersController < ApplicationController
       comment: "new order"
       )
     if @order.save
-      OrderMailer.prepare(@order).deliver_now
+
       redirect_to myorders_path, notice: "Une commande a été créée"
     else
       render 'articles/index'
@@ -70,6 +70,7 @@ class OrdersController < ApplicationController
   end
 end
 
+<<<<<<< HEAD
 def change_statut
   @order.status = params[:status]
   @order.save!
@@ -82,6 +83,28 @@ def change_statut
   elsif @order.annulle?
     redirect_to  myorders_path, notice: "La commande est annulée"
   end
+=======
+def acheteur_confirme
+  @order.a_preparer!
+  OrderMailer.prepare(@order).deliver_now
+  redirect_to  myorders_path, notice: "La commande est confirmée! Le vendeur la prépare..."
+end
+
+def vendeur_prepare
+  @order.confirme!
+  redirect_to  myorders_path, notice: "La commande est préparée"
+end
+
+def acheteur_pickup
+  @order.livre!
+  redirect_to  myorders_path, notice: "La commande a été récupérée"
+end
+
+def annulation
+
+  @order.annulle!
+  redirect_to  myorders_path, notice: "La commande est annulée"
+>>>>>>> master
 end
 
 def set_order

@@ -28,6 +28,7 @@ Rails.application.configure do
 
   # CGN: DEVISE => config default url options (dev environment)
   # TODO: in production, put real URL
+  # :letter_opener_web pour ne pas envoyer de mail
   config.action_mailer.delivery_method = :letter_opener_web
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
