@@ -5,9 +5,9 @@
 <div class="btn btn-primary a-recuperer">Mes achats à récupérer</div>
 <div class="btn btn-primary historique">Historique des achats</div> <br><br>
 
-<h1>Mes achats en cours</h1>
 
-<div class="container achats-en-cours">
+<div class="container" id="achats-en-cours">
+<h1>Mes achats en cours</h1>
   <% @orders.each do |order| %>
   <div class="col-xs-10">
     <b> <%= order.article.name %> de <%= order.user.first_name %> </b><i> (<%= order.status %>)</i>
@@ -29,8 +29,8 @@
   <% end %>
 </div>
 
+<div class="container" id="achats-en-preparation">
 <h1>Mes achats en préparation</h1>
-<div class="container achats-a-recuperer">
   <% @orders_prepa.each do |order| %>
   <div class="col-xs-10">
     <b> <%= order.article.name %> de <%= order.user.first_name %> </b><i> (<%= order.status %>)</i>
@@ -51,8 +51,9 @@
 </div>
 
 
+
+<div class="container" id="achats-a-recuperer">
 <h1>Mes achats à récupérer</h1>
-<div class="container achats-a-recuperer">
   <% @orders_a_recup.each do |order| %>
   <div class="col-xs-10">
     <b> <%= order.article.name %> de <%= order.user.first_name %> </b><i> (<%= order.status %>)</i>
@@ -73,8 +74,9 @@
 </div>
 
 
+
+<div class="container" id="historique">
 <h1>Historique des achats</h1>
-<div class="container historique">
   <% @orders_historique.each do |order| %>
   <div class="col-xs-10">
     <b> <%= order.article.name %> de <%= order.user.first_name %> </b><i> (<%= order.status %>)</i>
