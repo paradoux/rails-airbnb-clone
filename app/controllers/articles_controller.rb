@@ -44,7 +44,7 @@ class ArticlesController < ApplicationController
   def destroy
     @article = Article.find(params[:id])
     @article.destroy
-    redirect_to articles_path, notice: "L'article a été effacé ainsi que toutes les commandes qui lui sont liées"
+    redirect_to mysales_path, notice: "L'article a été effacé ainsi que toutes les commandes qui lui sont liées"
   end
 
   def search

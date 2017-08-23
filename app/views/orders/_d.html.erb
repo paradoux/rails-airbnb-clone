@@ -1,23 +1,27 @@
 <%= render 'orders/buttonsachats' %>
 
-<div class="container" id="historique">
+<div class="container" id="inbox" style="margin:20px; align-items:center">
 <h1>Historique des achats</h1>
-  <% @orders.each do |order| %>
-  <div class="col-xs-10">
-    <b> <%= order.article.name %> de <%= order.user.first_name %> </b><i> (<%= order.status %>)</i>
-    <br
-    <%= order.article.quantity %>
-    <%= order.article.unit %>
-    <br>
-    prix : <i><b><%= order.article.price %>€</b></i>
-    <br>
-    vendeur : <%= order.article.user.first_name + " " + order.article.user.last_name %>
-    <br>
-    ---------------------
-  </div>
-  <div class="col-xs-2">
-
-    <%= link_to "supprimer", destroy_order_path(order), method: :delete, class: "btn btn-primary" %>
-  </div>
+<% if @orders.count == 0  %>
+  <h3>pas d'historique, veuillez <%= link_to "créer une commande!", articles_path %></h3>
   <% end %>
-</div>
+    <div class="row message unread" style="border-bottom: 1px solid #ccc; padding: 0.4em 0; cursor: pointer; font-weight: bold;
+  background-color: white;">
+      <div class="col-xs-3">Commande</div>
+      <div class="col-xs-3">Vendeur</div>
+      <div class="col-xs-3">Prix</div>
+      <div class="col-xs-3">Actions</div>
+    </div>
+    <% @orders.each do |order| %>
+    <div class="row message read" style="background-color: #eee;">
+      <div class="col-xs-3"><%= order.article.name.upcase %> </div>
+      <div class="col-xs-3"><%= order.user.first_name %></div>
+      <div class="col-xs-3"><%= order.article.price %>€</div>
+      <div class="col-xs-3">
+        <%= link_to "", destroy_order_path(order), method: :delete, class: "fa fa-trash-o", style: "color:#6D516B; font-size:50px; left:50px; align-items: right;"%>
+      </div>
+    </div>
+    <% end %>
+  </div>
+
+

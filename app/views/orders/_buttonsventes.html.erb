@@ -1,6 +1,21 @@
 <%= link_to "back", articles_path, class: "btn btn-primary" %>
+<nav>
 
-<%= link_to "Mes produits", mysales_path(status: :en_cours), class: "btn btn-primary" %>
-<%= link_to "Mes commandes à préparer", mysales_path(status: :a_preparer), class: "btn btn-primary" %>
-<%= link_to "Mes commandes en attente pickup", mysales_path(status: :confirme), class: "btn btn-primary" %>
-<%= link_to "Historique", mysales_path(status: :livre), class: "btn btn-primary" %>
+ <div class="tabs tabs-style-iconbox">
+ <ul class="list-inline">
+ <li>
+<%= link_to "Mes produits", mysales_path(status: :en_cours) %>
+</li>
+<li>
+<%= link_to "Mes commandes à préparer", mysales_path(status: :a_preparer), class: "" %>
+</li>
+<li>
+<%= link_to "Mes commandes en attente pickup", mysales_path(status: :confirme), class: "" %>
+</li>
+<li>
+<%= link_to "Historique", mysales_path(status: :livre), class: "" %>
+</li>
+</ul>
+</div>
+
+   </nav>

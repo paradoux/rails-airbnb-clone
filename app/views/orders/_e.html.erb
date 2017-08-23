@@ -1,24 +1,25 @@
 <%= render 'orders/buttonsventes' %>
 
-<div class="container" id="aPreparer">
-  <h1>Mes commandes à préparer</h1>
-  <div class="col-md-8 col-lg-8 col-xs-12">
-    <% @orders_a_preparer.each do |order| %>
-      <div class="col-xs-10">
-      <b> <%= order.article.name %>  </b><i> (<%= order.status %>)</i>
-      <br>
-      <%= order.article.quantity %>
-      <%= order.article.unit %>
-      <br>
-      prix : <i><b><%= order.article.price %>€</b></i>
-      <br>
-      vendeur : <%= order.article.user.first_name + " " + order.article.user.last_name %>
-      <br>
-      ---------------------
+<div class="container" id="inbox" style="margin:20px; align-items:center">
+<h1>Mes commandes à préparer</h1>
+    <div class="row message unread" style="border-bottom: 1px solid #ccc; padding: 0.4em 0; cursor: pointer; font-weight: bold;
+  background-color: white;">
+      <div class="col-xs-3">Commande</div>
+      <div class="col-xs-3">Acheteur</div>
+      <div class="col-xs-3">Prix</div>
+      <div class="col-xs-3">Actions</div>
     </div>
-    <div class="col-xs-2">
-      <%= link_to "preparation ok", change_statut_path(order, status: :confirme), class: "btn btn-primary" %>
+    <% @orders.each do |order| %>
+    <div class="row message read" style="background-color: #eee;">
+      <div class="col-xs-3"><%= order.article.name.upcase %> </div>
+      <div class="col-xs-3"><%= order.user.first_name %></div>
+      <div class="col-xs-3"><%= order.article.price %>€</div>
+      <div class="col-xs-3">
+        <%= link_to "", change_statut_path(order, status: :confirme), class: "fa fa-check-circle", style: "color:#6D516B; font-size:50px;"  %>
+      </div>
     </div>
-  <% end %>
+    <% end %>
   </div>
-</div>
+
+
+
