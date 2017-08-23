@@ -48,6 +48,7 @@ class ArticlesController < ApplicationController
   end
 
   def search
+    params[:query].downcase!
     if params[:query] == ""
       redirect_to articles_path
     else
