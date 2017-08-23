@@ -1,1 +1,21 @@
-_mesproduitts.html.erb
+<div class="container" id="mesProduits">
+    <h1>Mes produits</h1>
+  <div class="col-md-4 col-lg-4 col-xs-12">
+    <%= render 'form', article: @article %>
+  </div>
+  <div class="col-md-8 col-lg-8 col-xs-12">
+    <% @articles.each do |article| %>
+    <div class="col-xs-10">
+      <b> <%= article.name %>  </b><i> (<%= article.quantity%>(<%= article.unit %>)</i>
+      <br
+      <%= article.description %>
+      <br>
+      prix : <i><b><%= article.price %>€</b></i>
+      <br>
+      vendeur : <%= article.user.first_name + " " + article.user.last_name %>
+      <br>
+      ---------------------
+    </div>
+    <% end %>
+  </div>
+</div>
