@@ -1,0 +1,23 @@
+<%= render 'orders/buttonsachats' %>
+
+<div class="container" id="historique">
+<h1>Historique des achats</h1>
+  <% @orders.each do |order| %>
+  <div class="col-xs-10">
+    <b> <%= order.article.name %> de <%= order.user.first_name %> </b><i> (<%= order.status %>)</i>
+    <br
+    <%= order.article.quantity %>
+    <%= order.article.unit %>
+    <br>
+    prix : <i><b><%= order.article.price %>€</b></i>
+    <br>
+    vendeur : <%= order.article.user.first_name + " " + order.article.user.last_name %>
+    <br>
+    ---------------------
+  </div>
+  <div class="col-xs-2">
+
+    <%= link_to "supprimer", destroy_order_path(order), method: :delete, class: "btn btn-primary" %>
+  </div>
+  <% end %>
+</div>
