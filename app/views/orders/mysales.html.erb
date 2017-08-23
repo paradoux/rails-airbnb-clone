@@ -1,33 +1,13 @@
 <%= link_to "back", articles_path, class: "btn btn-primary" %>
 
-<div class="btn btn-primary en-cours">Mes produits</div>
+<%= link_to "Mes produits", change_statut_path(order, status: :confirme), class: "btn btn-primary" %>
 <div class="btn btn-primary a-recuperer">Mes commandes à préparer</div>
 <div class="btn btn-primary historique">Mes commandes en attente pickup</div>
 <div class="btn btn-primary historique">Historique</div> <br><br>
 
-<div class="container">
-    <h1>Mes produits</h1>
-  <div class="col-md-4 col-lg-4 col-xs-12">
-    <%= render 'form', article: @article %>
-  </div>
-  <div class="col-md-8 col-lg-8 col-xs-12">
-    <% @articles.each do |article| %>
-    <div class="col-xs-10">
-      <b> <%= article.name %>  </b><i> (<%= article.quantity%>(<%= article.unit %>)</i>
-      <br
-      <%= article.description %>
-      <br>
-      prix : <i><b><%= article.price %>€</b></i>
-      <br>
-      vendeur : <%= article.user.first_name + " " + article.user.last_name %>
-      <br>
-      ---------------------
-    </div>
-    <% end %>
-  </div>
-</div>
 
-<div class="container">
+
+<div class="container" id="a-preparer">
   <h1>Mes commandes à préparer</h1>
   <div class="col-md-8 col-lg-8 col-xs-12">
     <% @orders_a_preparer.each do |order| %>
@@ -50,7 +30,7 @@
   </div>
 </div>
 
-<div class="container">
+<div class="container" id="en-attente-pickup">
   <h1>Mes commandes en attente pickup</h1>
   <div class="col-md-8 col-lg-8 col-xs-12">
     <% @orders_livre.each do |order| %>
@@ -74,7 +54,7 @@
 
 </div>
 
-<div class="container">
+<div class="container" id="historqique">
   <h1>Historique</h1>
   <div class="col-md-8 col-lg-8 col-xs-12">
     <% @orders_termine.each do |order| %>
