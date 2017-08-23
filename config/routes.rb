@@ -23,9 +23,6 @@ Rails.application.routes.draw do
 
   get '/articles/search', to: 'articles#search'
 
-  get 'orders/:id/confirme', to: 'orders#acheteur_confirme', as: 'confirme'
-  get 'orders/:id/prepare', to: 'orders#vendeur_prepare', as: 'prepare'
-  get 'orders/:id/livre', to: 'orders#acheteur_pickup', as: 'livre'
-  get 'orders/:id/annule', to: 'orders#annulation', as: 'annule'
+  get 'orders/:id/:status', to: 'orders#change_statut', as: 'change_statut'
 
 end
