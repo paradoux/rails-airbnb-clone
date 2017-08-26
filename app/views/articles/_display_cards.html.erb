@@ -28,7 +28,7 @@
           <% if article.user.profile_picture? %>
             <%= cl_image_tag article.user.profile_picture.path, width:300, height:300, crop: :fill, gravity: :face, class: "card-user" %>
           <% elsif article.user.facebook_picture_url? %>
-            <%= image_tag current_user.facebook_picture_url, class: "card-user" %>
+            <%= image_tag article.user.facebook_picture_url, class: "card-user" %>
           <% else %>
             <%= image_tag "http://placehold.it/30x30", class: "card-user" %>
           <% end %>
